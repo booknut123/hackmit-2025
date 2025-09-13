@@ -3,6 +3,8 @@ import Homepage from './components/homepage/Homepage';
 import JournalEntry from './components/journal-entry/JournalEntry';
 import ChatInterface from './components/chat/ChatInterface';
 import PatternInsights from './components/pattern-inights/PatternInsights';
+import MoodVisualization from './components/mood/MoodVisualization';
+import VoiceRecorder from './components/voice/VoiceRecorder';
 // Import other components as you build them
 
 const NAV_ITEMS = [
@@ -51,10 +53,10 @@ function App() {
       content = <PatternInsights journalEntries={journalEntries} />;
       break;
     case 'voice':
-      content = <div>Voice Component (to be built)</div>;
+      content = <VoiceRecorder />;
       break;
     case 'mood':
-      content = <div>Mood Component (to be built)</div>;
+      content = <MoodVisualization journalEntries={journalEntries} />;
       break;
     // Add cases for other components as you build them
     default:

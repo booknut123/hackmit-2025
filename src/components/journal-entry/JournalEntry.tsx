@@ -29,19 +29,46 @@ export default function JournalEntry() {
     );
   };
 
+  const handleSubmit = async () => {
+    const data = {
+      log_date: new Date().toISOString().split("T")[0], // today's date
+      day_rating: null, // you can add a rating field
+      journal_entry: notes,
+      emotions: selectedSymptoms, // or selectedMood if you want to track moods
+    };
+
+    try {
+      const res = await fetch("http://localhost:8000/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      console.log(json);
+      alert("Saved successfully!");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to save");
+    }
+  };
+
   return (
     <div className="journal-container">
       {/* Mood Selection */}
       <div className="journal-section">
         <div className="journal-section-title">
-          <span role="img" aria-label="smile" className="journal-icon">😊</span>
+          <span role="img" aria-label="smile" className="journal-icon">
+            😊
+          </span>
           How are you feeling today?
         </div>
         <div className="mood-options">
-          {moods.map(mood => (
+          {moods.map((mood) => (
             <button
               key={mood.value}
-              className={`mood-card${selectedMood === mood.value ? ' selected' : ''}`}
+              className={`mood-card${
+                selectedMood === mood.value ? " selected" : ""
+              }`}
               onClick={() => setSelectedMood(mood.value)}
               type="button"
             >
@@ -56,10 +83,12 @@ export default function JournalEntry() {
       <div className="journal-section">
         <div className="journal-section-title">Track Symptoms</div>
         <div className="symptom-tags">
-          {symptoms.map(symptom => (
+          {symptoms.map((symptom) => (
             <button
               key={symptom}
-              className={`symptom-tag${selectedSymptoms.includes(symptom) ? ' active' : ''}`}
+              className={`symptom-tag${
+                selectedSymptoms.includes(symptom) ? " active" : ""
+              }`}
               onClick={() => toggleSymptom(symptom)}
               type="button"
             >
@@ -72,11 +101,15 @@ export default function JournalEntry() {
       {/* Voice Note */}
       <div className="journal-section">
         <div className="journal-section-title">
-          <span role="img" aria-label="mic" className="journal-icon">🎤</span>
+          <span role="img" aria-label="mic" className="journal-icon">
+            🎤
+          </span>
           Voice Note
         </div>
         <button className="voice-record-btn" type="button">
-          <span role="img" aria-label="mic" className="voice-record-icon">🎤</span>
+          <span role="img" aria-label="mic" className="voice-record-icon">
+            🎤
+          </span>
           Start Voice Recording
         </button>
         <div className="voice-progress-bar"></div>
@@ -89,9 +122,12 @@ export default function JournalEntry() {
           className="notes-input"
           placeholder="How are you feeling? What's on your mind today? Any patterns you've noticed?"
           value={notes}
-          onChange={e => setNotes(e.target.value)}
+          onChange={(e) => setNotes(e.target.value)}
         />
       </div>
+      <button type="button" onClick={handleSubmit}>
+        Save
+      </button>
     </div>
   );
 }

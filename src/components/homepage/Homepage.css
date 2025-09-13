@@ -1,4 +1,3 @@
-/* General page styles */
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -14,7 +13,6 @@ body {
     align-items: center;
 }
 
-/* Clock Section */
 .clock {
     text-align: center;
     margin-bottom: 2rem;
@@ -37,7 +35,6 @@ body {
     font-weight: bold;
 }
 
-/* Calendar Header */
 .calendar-header {
     display: flex;
     align-items: center;
@@ -58,7 +55,6 @@ body {
     cursor: pointer;
 }
 
-/* Calendar Grid */
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -83,7 +79,7 @@ body {
 }
 
 .calendar-day:hover {
-    background-color: #fddde6; /* soft pink highlight */
+    background-color: #fddde6; /* soft pink */
 }
 
 .today {

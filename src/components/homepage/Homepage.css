@@ -2,8 +2,9 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #f5f3ff; /* soft lavender */
-    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 50%, #ddd6fe 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Page container */
@@ -12,61 +13,153 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 2rem;
+    min-height: 100vh;
 }
 
 /* Header */
 .page-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #6b21a8;
-    margin-bottom: 0.25rem;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #7c3aed;
+    margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 .page-subtitle {
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: #6b7280;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Cycle status display */
+.cycle-status {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cycle-day {
+    font-size: 1.25rem;
+    color: #374151;
+    margin-bottom: 0.25rem;
+}
+
+.cycle-day strong {
+    color: #7c3aed;
+    font-weight: 700;
+}
+
+.cycle-phase {
+    font-size: 1rem;
+    color: #6b7280;
+    font-weight: 500;
 }
 
 /* Navigation tabs */
 .nav-tabs {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: none;
     border: none;
     font-size: 0.875rem;
     font-weight: 500;
     color: #6b7280;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab:hover {
+    color: #7c3aed;
+}
+
+.tab.active {
+    color: #7c3aed;
+}
+
+.tab svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+.cycle-form,
+.calendar-card,
+.journal-details {
+    max-width: 800px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Cycle form */
+.cycle-form {
+    display: flex; /* Hidden by default, can be shown when needed */
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cycle-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.cycle-form input {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
     border-radius: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.cycle-form button {
+    padding: 0.75rem 1.5rem;
+    background-color: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
-.tab:hover {
-    background-color: #f3f4f6;
-}
-
-.tab.active {
-    color: #6b21a8;
-    background-color: #ede9fe;
+.cycle-form button:hover {
+    background-color: #6d28d9;
 }
 
 /* Calendar card */
 .calendar-card {
-    max-width: 600px;
+    max-width: 800px;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(6px);
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
 }
 
 /* Calendar header */
@@ -74,62 +167,88 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
 }
 
 .calendar-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #6b21a8;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #374151;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 0.5rem;
 }
 
 .calendar-nav button {
-    background: none;
+    background: rgba(124, 58, 237, 0.1);
     border: none;
-    padding: 0.5rem;
-    border-radius: 9999px;
+    padding: 0.75rem;
+    border-radius: 50%;
     cursor: pointer;
-    color: #6b21a8;
-    transition: background-color 0.2s ease;
+    color: #7c3aed;
+    transition: all 0.2s ease;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .calendar-nav button:hover {
-    background-color: #f3f4f6;
+    background: rgba(124, 58, 237, 0.2);
+    transform: scale(1.05);
 }
 
 /* Phase legend */
 .calendar-legend {
     display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .badge {
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
     font-weight: 500;
-    font-size: 0.75rem;
-    color: white;
+    font-size: 0.875rem;
+    color: #374151;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e5e7eb;
 }
 
-.badge.menstrual { background-color: #ef4444; }
-.badge.follicular { background-color: #10b981; }
-.badge.ovulatory { background-color: #facc15; }
-.badge.luteal { background-color: #a78bfa; }
+.badge::before {
+    content: '';
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+}
+
+.badge.menstrual::before { background-color: #ef4444; }
+.badge.follicular::before { background-color: #10b981; }
+.badge.ovulatory::before { background-color: #f59e0b; }
+.badge.luteal::before { background-color: #8b5cf6; }
 
 /* Days of week */
 .calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .day-label {
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     color: #6b7280;
-    font-weight: 500;
+    font-weight: 600;
+    padding: 0.5rem;
 }
 
 /* Calendar grid */
@@ -137,84 +256,121 @@ body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.5rem;
+    margin-bottom: 2rem;
 }
 
 .day-empty {
-    min-height: 3rem;
+    min-height: 4rem;
 }
 
 /* Day cells */
 .day-cell {
     position: relative;
-    min-height: 3rem;
-    border-radius: 0.75rem;
+    min-height: 4rem;
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-weight: 500;
+    font-size: 1rem;
     color: #374151;
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.day-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .day-cell.today {
-    border: 2px solid #9333ea;
-    color: #7e22ce;
-    font-weight: bold;
+    border: 3px solid #7c3aed;
+    box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+    transform: scale(1.05);
+    font-weight: 700;
 }
 
-.day-cell.menstrual { background-color: #fee2e2; border-color: #fecaca; }
-.day-cell.follicular { background-color: #d1fae5; border-color: #a7f3d0; }
-.day-cell.ovulatory { background-color: #fef3c7; border-color: #fde68a; }
-.day-cell.luteal { background-color: #ede9fe; border-color: #ddd6fe; }
-.day-cell.unknown { background-color: #f3f4f6; border-color: #e5e7eb; }
+.day-cell.menstrual { 
+    background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+    border-color: #ef4444;
+}
+
+.day-cell.follicular { 
+    background: linear-gradient(135deg, #a7f3d0 0%, #6ee7b7 100%);
+    border-color: #10b981;
+}
+
+.day-cell.ovulatory { 
+    background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+    border-color: #f59e0b;
+}
+
+.day-cell.luteal { 
+    background: linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 100%);
+    border-color: #8b5cf6;
+}
+
+.day-cell.unknown { 
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-color: #d1d5db;
+}
 
 /* Mood dot */
 .mood-dot {
     position: absolute;
-    top: 0.25rem;
-    left: 0.25rem;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 9999px;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
     background-color: #d1d5db;
+    opacity: 0.6;
 }
 
 .mood-dot.active {
-    background-color: #c084fc;
+    background-color: #7c3aed;
+    opacity: 1;
 }
 
 /* Mood icons */
 .mood-icon {
     position: absolute;
-    bottom: 0.25rem;
-    right: 0.25rem;
-    width: 0.75rem;
-    height: 0.75rem;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    width: 1rem;
+    height: 1rem;
 }
 
 .mood-icon.happy { color: #ec4899; }
-.mood-icon.energetic { color: #fbbf24; }
+.mood-icon.energetic { color: #f59e0b; }
 .mood-icon.neutral { color: #6b7280; }
 .mood-icon.sad { color: #3b82f6; }
 
 /* Day number */
 .day-number {
-    font-size: 0.875rem;
+    font-size: 1rem;
+    z-index: 1;
 }
 
 /* Cycle info box */
 .cycle-info {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    background-color: rgba(255, 255, 255, 0.6);
-    border: 1px solid #e5e7eb;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     font-size: 0.875rem;
+}
+
+.cycle-info > div {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
     color: #374151;
 }
 
@@ -224,7 +380,114 @@ body {
 }
 
 .cycle-info strong {
-    margin-left: 0.5rem;
+    font-weight: 700;
+    color: #7c3aed;
+}
+
+/* Journal details modal */
+.journal-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    max-width: 400px;
+    width: 90%;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.journal-details.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.journal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.journal-header h3 {
+    margin: 0;
+    color: #374151;
     font-weight: 600;
-    color: #111827;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.close-button:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.journal-entry p {
+    margin-bottom: 1rem;
+    color: #374151;
+    line-height: 1.5;
+}
+
+.journal-entry strong {
+    color: #7c3aed;
+    font-weight: 600;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .cycle-form,
+    .calendar-card,
+    .journal-details {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    }
+    .page-container {
+        padding: 1rem;
+    }
+    
+    .page-title {
+        font-size: 2.5rem;
+    }
+    
+    .nav-tabs {
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+    }
+    
+    .calendar-card {
+        padding: 1.5rem;
+    }
+    
+    .calendar-title {
+        font-size: 1.5rem;
+    }
+    
+    .day-cell {
+        min-height: 3rem;
+        font-size: 0.875rem;
+    }
+    
+    .cycle-info {
+        grid-template-columns: 1fr;
+    }
 }

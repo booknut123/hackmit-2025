@@ -1,10 +1,19 @@
+/* Root container */
 #root {
-  max-width: 1280px;
+  width: 100%;
+}
+
+/* Centered sections */
+.app-header,
+.app-nav,
+.app-main {
+  max-width: 1000px;   /* or 1280px if you want wider */
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 1rem;
   text-align: center;
 }
 
+/* Logo styles (from Vite boilerplate, keep if you still use it) */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -18,25 +27,21 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+/* Logo animation */
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
-
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
 
+/* Utilities */
 .card {
   padding: 2em;
 }
-
 .read-the-docs {
   color: #888;
 }

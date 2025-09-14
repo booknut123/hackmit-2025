@@ -1,69 +1,141 @@
-# React + TypeScript + Vite
+# 🌺 Periodically. : Your cycle, Your story, Your insight.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Reimagining Bellabeat not as a wearable, but as a hyper-personalized AI wellness companion.
+"If that company were founded today, what would it look like with AI in the driver’s seat?"
 
-Currently, two official plugins are available:
+## 💭 What is Periodically. ?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Periodically is not a period tracker. It’s a **fundamental paradigm shift in personalized health AI** a platform where you converse with a wiser version of yourself, powered by your own data and patterns.
 
-## Expanding the ESLint configuration
+* You are the expert.
+Our AI learns from your journal, voice, mood, and cycle, not from generic population averages.
+* Hyper-personalized insights.
+The app reflects your unique patterns, moods, and health correlations, empowering you to understand yourself.
+* AI as your companion.
+Not a chatbot, but a digital twin trained on your lived experience.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+<img height="700" align-items="center" alt="ChatGPT Image Sep 14, 2025, 05_54_01 AM" src="https://github.com/user-attachments/assets/fcd670f2-c9a6-48e9-ab97-56fd07fff330" />
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📚 Philosophy and Innovation
+* Old Way (Bellabeat, Flo): Population-based, clinical, generic.
+* Periodically. : Personal, empathetic, you-based.
+The AI listens, learns, and reflects your own patterns back to you.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## ⛓️ Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+* Journal, Voice, Mood: Rich, subjective data input.
+* Chat: Converse with your AI twin, powered by Claude API and your own history.
+* Insights & Calendar: Discover correlations and trends unique to you.
+* Pattern Analysis: ML and LLM fusion for pattern recognition and empathetic conversation.
+* Privacy: Your data is yours, stored securely and used only for your personalized experience.
+
+## 🏗️ Project Structure
+
+This project is organized into the following key directories and files:
+
+### `src`
+Contains the core source code of the application.
+
+### `components/`
+Modular React components for each feature:
+
+* `homepage/` — Calendar, cycle info, journal details
+* `journal-entry/` — Mood, symptom, and notes logging
+* `chat/` — Chat interface with Claude API integration
+* `pattern-inights/` — Cycle pattern analytics and insights
+* `voice-recorder/` — Voice recording and transcription
+* `mood-visualization/` — Mood, energy, stress, sleep visualization
+
+### `context/`
+UserContext.tsx — Global user state with localStorage persistence
+
+### `services/`
+claudeAPI.ts — Claude API integration for personalized responses
+
+* `App.tsx` — Main app entry, context provider, and routing
+* `index.css` — Global styles
+
+### Root Level Files
+
+* `.env` — Environment variables (API keys)
+* `README.md` — This file, providing an overview of the project
+* `LICENSE` — Specifies the licensing terms for the project
+
+## 🖥️ Technologies
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Recharts
+- Anthropic AI
+
+# 📦 Dependencies 
+* React (v18+)
+* TypeScript
+* Vite (for fast dev/build)
+* lucide-react (icons)
+* recharts (charts/visualizations)
+* class-variance-authority (utility for UI variants)
+* Tailwind CSS (utility-first styling)
+* Claude API (Anthropic, for AI chat)
+* (Optional) 
+    * Express/Firebase/Supabase for backend user profiles
+
+## 🛠️ Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/booknut123/hackmit-2025
+cd periodically
+```
+2. Install dependencies:
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3. Set up environment variables:
+    * Create a .env file in the root and replace with your Claude API key: 
+```bash
+VITE_CLAUDE_API_KEY=your_claude_api_key_here
 ```
+
+4. Start development server: 
+```bash
+npm run dev
+```
+
+5. Build for production:
+```bash
+npm run build
+```
+## 🔐 Privacy and User Data 
+
+* All personal data is stored locally or securely in your chosen backend.
+* No data is shared or sold.
+* User profiles are optional for MVP; all personalization is session-based unless you enable persistent profiles.
+
+## 🤗 Contributing
+
+We welcome contributions!!!
+
+Please open issues or pull requests for improvements, new features, or bug fixes.
+
+
+## 🫂 The Vision
+
+Periodically is building the future of personalized health.
+Today? Cycle health.
+Tomorrow? Diet, exercise, stress through the lens of your unique biology.
+
+### 🏆 Why Periodically Is Different
+* Not a period tracker.
+A personalized AI wellness companion.
+* Not a chatbot.
+A digital twin trained on your lived experience.
+* Not just predictions.
+Actionable, empathetic insights unique to you.
+
+## License
+
+MIT

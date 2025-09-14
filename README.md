@@ -1,5 +1,8 @@
 # 🌺 Periodically. : Your cycle, Your story, Your insight.
 
+Link to our Google Slides: https://docs.google.com/presentation/d/1UbMOhqXyH5Hhtkw1XRVYGKRlwkn8TT80NPcMyysjo1Q/edit?usp=sharing
+Link to a video demo: 
+
 Reimagining Bellabeat not as a wearable, but as a hyper-personalized AI wellness companion.
 "If that company were founded today, what would it look like with AI in the driver’s seat?"
 

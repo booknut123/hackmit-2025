@@ -10,13 +10,14 @@ interface Cycle {
   phase: CyclePhase;
 }
 
+
 interface JournalEntry {
-  id?: number;
+  id: string;
   date: string;
+  content: string;
   mood: 'happy' | 'energetic' | 'neutral' | 'sad';
   symptoms: string[];
-  notes: string;
-  voice_note?: string | null;
+  cycleDay: number;
 }
 
 interface HomepageProps {

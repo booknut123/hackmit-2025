@@ -18,7 +18,7 @@ const NAV_ITEMS = [
 ];
 
 function App() {
-  const [activeTab, setActiveTab] = useState('journal');
+  const [activeTab, setActiveTab] = useState('calendar');
 
   const currentCycle = {
     startDate: new Date(2025, 10, 1),

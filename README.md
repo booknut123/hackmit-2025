@@ -1,9 +1,9 @@
-# Periodically. : Your cycle, Your story, Your insight.
+# 🌺 Periodically. : Your cycle, Your story, Your insight.
 
 Reimagining Bellabeat not as a wearable, but as a hyper-personalized AI wellness companion.
 "If that company were founded today, what would it look like with AI in the driver’s seat?"
 
-## What is Periodically. ?
+## 💭 What is Periodically. ?
 
 Periodically is not a period tracker. It’s a **fundamental paradigm shift in personalized health AI** a platform where you converse with a wiser version of yourself, powered by your own data and patterns.
 
@@ -14,12 +14,14 @@ The app reflects your unique patterns, moods, and health correlations, empowerin
 * AI as your companion.
 Not a chatbot, but a digital twin trained on your lived experience.
 
-## Philosophy and Innovation
+<img width="1024" height="1536" alt="ChatGPT Image Sep 14, 2025, 05_54_01 AM" src="https://github.com/user-attachments/assets/fcd670f2-c9a6-48e9-ab97-56fd07fff330" />
+
+## 📚 Philosophy and Innovation
 * Old Way (Bellabeat, Flo): Population-based, clinical, generic.
 * Periodically. : Personal, empathetic, you-based.
 The AI listens, learns, and reflects your own patterns back to you.
 
-## Features
+## ⛓️ Features
 
 * Journal, Voice, Mood: Rich, subjective data input.
 * Chat: Converse with your AI twin, powered by Claude API and your own history.
@@ -27,26 +29,27 @@ The AI listens, learns, and reflects your own patterns back to you.
 * Pattern Analysis: ML and LLM fusion for pattern recognition and empathetic conversation.
 * Privacy: Your data is yours, stored securely and used only for your personalized experience.
 
-## Project Structure
+## 🏗️ Project Structure
 
-src/
-  components/
-    homepage/           # Calendar, cycle info, journal details
-    journal-entry/      # Mood, symptom, and notes logging
-    chat/               # Chat interface with Claude API integration
-    pattern-inights/    # Cycle pattern analytics and insights
-    voice-recorder/     # Voice recording and transcription
-    mood-visualization/ # Mood, energy, stress, sleep visualization
-  context/
-    UserContext.tsx     # Global user state with localStorage persistence
-  services/
-    claudeAPI.ts        # Claude API integration for personalized responses
-  App.tsx               # Main app entry, context provider, routing
-  index.css             # Global styles
-.env                    # Environment variables (API keys)
-README.md               # Project documentation
+├── src/
+├────  components/
+│   ├──── homepage/           # Calendar, cycle info, journal details
+│   ├──── journal-entry/      # Mood, symptom, and notes logging
+│   ├──── chat/               # Chat interface with Claude API integration
+│   ├──── pattern-inights/    # Cycle pattern analytics and insights
+│   ├──── voice-recorder/     # Voice recording and transcription
+│   └──── mood-visualization/ # Mood, energy, stress, sleep visualization
+├──── context/
+│   └──── UserContext.tsx     # Global user state with localStorage persistence
+├──── services/
+│   └──── claudeAPI.ts        # Claude API integration for personalized responses
+├──── App.tsx               # Main app entry, context provider, routing
+├────index.css             # Global styles
+├── .env                    # Environment variables (API keys)
+├── README.md               # Project documentation
+└── LICENSE
 
-## Technologies
+## 🖥️ Technologies
 
 - React
 - TypeScript
@@ -55,7 +58,7 @@ README.md               # Project documentation
 - Recharts
 - Anthropic AI
 
-# Dependencies 
+# 📦 Dependencies 
 * React (v18+)
 * TypeScript
 * Vite (for fast dev/build)
@@ -67,7 +70,7 @@ README.md               # Project documentation
 * (Optional) 
     * Express/Firebase/Supabase for backend user profiles
 
-## Installation
+## 🛠️ Installation
 
 1. Clone the repository
 ```bash
@@ -94,19 +97,20 @@ npm run dev
 ```bash
 npm run build
 ```
-## Privacy and User Data 
+## 🔐 Privacy and User Data 
 
 * All personal data is stored locally or securely in your chosen backend.
 * No data is shared or sold.
 * User profiles are optional for MVP; all personalization is session-based unless you enable persistent profiles.
 
-## Contributing
+## 🤗 Contributing
 
 We welcome contributions!!!
+
 Please open issues or pull requests for improvements, new features, or bug fixes.
 
 
-## The Vision
+## 🫂 The Vision
 
 Periodically is building the future of personalized health.
 Today? Cycle health.

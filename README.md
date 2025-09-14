@@ -14,7 +14,7 @@ The app reflects your unique patterns, moods, and health correlations, empowerin
 * AI as your companion.
 Not a chatbot, but a digital twin trained on your lived experience.
 
-<img width="1024" height="1536" alt="ChatGPT Image Sep 14, 2025, 05_54_01 AM" src="https://github.com/user-attachments/assets/fcd670f2-c9a6-48e9-ab97-56fd07fff330" />
+<img max-height="400" alt="ChatGPT Image Sep 14, 2025, 05_54_01 AM" src="https://github.com/user-attachments/assets/fcd670f2-c9a6-48e9-ab97-56fd07fff330" />
 
 ## 📚 Philosophy and Innovation
 * Old Way (Bellabeat, Flo): Population-based, clinical, generic.
@@ -31,23 +31,35 @@ The AI listens, learns, and reflects your own patterns back to you.
 
 ## 🏗️ Project Structure
 
-├── src/
-├────  components/
-│   ├──── homepage/           # Calendar, cycle info, journal details
-│   ├──── journal-entry/      # Mood, symptom, and notes logging
-│   ├──── chat/               # Chat interface with Claude API integration
-│   ├──── pattern-inights/    # Cycle pattern analytics and insights
-│   ├──── voice-recorder/     # Voice recording and transcription
-│   └──── mood-visualization/ # Mood, energy, stress, sleep visualization
-├──── context/
-│   └──── UserContext.tsx     # Global user state with localStorage persistence
-├──── services/
-│   └──── claudeAPI.ts        # Claude API integration for personalized responses
-├──── App.tsx               # Main app entry, context provider, routing
-├────index.css             # Global styles
-├── .env                    # Environment variables (API keys)
-├── README.md               # Project documentation
-└── LICENSE
+This project is organized into the following key directories and files:
+
+### `src`
+Contains the core source code of the application.
+
+### `components/`
+Modular React components for each feature:
+
+* `homepage/` — Calendar, cycle info, journal details
+* `journal-entry/` — Mood, symptom, and notes logging
+* `chat/` — Chat interface with Claude API integration
+* `pattern-inights/` — Cycle pattern analytics and insights
+* `voice-recorder/` — Voice recording and transcription
+* `mood-visualization/` — Mood, energy, stress, sleep visualization
+
+### `context/`
+UserContext.tsx — Global user state with localStorage persistence
+
+### `services/`
+claudeAPI.ts — Claude API integration for personalized responses
+
+* `App.tsx` — Main app entry, context provider, and routing
+* `index.css` — Global styles
+
+### Root Level Files
+
+* `.env` — Environment variables (API keys)
+* `README.md` — This file, providing an overview of the project
+* `LICENSE` — Specifies the licensing terms for the project
 
 ## 🖥️ Technologies
 

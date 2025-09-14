@@ -10,7 +10,6 @@ interface Cycle {
   phase: CyclePhase;
 }
 
-
 interface JournalEntry {
   id: string;
   date: string;
@@ -18,6 +17,8 @@ interface JournalEntry {
   mood: 'happy' | 'energetic' | 'neutral' | 'sad';
   symptoms: string[];
   cycleDay: number;
+  notes?: string;
+  voice_note?: string | null;
 }
 
 interface HomepageProps {
@@ -39,6 +40,13 @@ const Homepage: React.FC<HomepageProps> = ({ currentCycle, journalEntries }) => 
   const [userCycle, setUserCycle] = useState<Cycle>(currentCycle);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [showPeriodForm, setShowPeriodForm] = useState(false);
+
+  // --- Map incoming entries to include notes and voice_note ---
+  const formattedEntries = journalEntries.map(entry => ({
+    ...entry,
+    notes: entry.content || '',
+    voice_note: (entry as any).voice_note || null
+  }));
 
   const getDaysInMonth = (date: Date): (number | null)[] => {
     const year = date.getFullYear();
@@ -85,7 +93,7 @@ const Homepage: React.FC<HomepageProps> = ({ currentCycle, journalEntries }) => 
   const getMoodForDay = (day: number | null): JournalEntry['mood'] | undefined => {
     if (!day) return undefined;
     const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    const entry = journalEntries.find(e => e.date === dateStr);
+    const entry = formattedEntries.find(e => e.date === dateStr);
     return entry?.mood;
   };
 
@@ -137,11 +145,11 @@ const Homepage: React.FC<HomepageProps> = ({ currentCycle, journalEntries }) => 
   const days = getDaysInMonth(currentDate);
   const today = new Date();
   const isCurrentMonth = currentDate.getMonth() === today.getMonth() && currentDate.getFullYear() === today.getFullYear();
-// Calculate cycle day based on full days since period start
-const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-const startMidnight = new Date(userCycle.startDate.getFullYear(), userCycle.startDate.getMonth(), userCycle.startDate.getDate());
-const daysSincePeriodStart = Math.floor((todayMidnight.getTime() - startMidnight.getTime()) / (1000 * 60 * 60 * 24));
-const cycleDay = daysSincePeriodStart + 1;
+
+  const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const startMidnight = new Date(userCycle.startDate.getFullYear(), userCycle.startDate.getMonth(), userCycle.startDate.getDate());
+  const daysSincePeriodStart = Math.floor((todayMidnight.getTime() - startMidnight.getTime()) / (1000 * 60 * 60 * 24));
+  const cycleDay = daysSincePeriodStart + 1;
 
   return (
     <div className="page-container">
@@ -222,7 +230,7 @@ const cycleDay = daysSincePeriodStart + 1;
               <button className="close-button" onClick={() => setSelectedDate(null)}>×</button>
             </div>
             {(() => {
-              const entry = journalEntries.find(e => e.date === selectedDate);
+              const entry = formattedEntries.find(e => e.date === selectedDate);
               if (!entry) return <p>No journal entry for this day.</p>;
               return (
                 <div className="journal-entry">

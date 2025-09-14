@@ -67,6 +67,7 @@ const Homepage: React.FC<HomepageProps> = ({ currentCycle, journalEntries }) => 
       if (adjustedDays >= 6) return 'follicular';
       return 'menstrual';
     }
+    
     const cycleDay = daysSincePeriodStart + 1;
     if (periodEnd) {
       const endDate = new Date(periodEnd);
@@ -135,7 +136,11 @@ const Homepage: React.FC<HomepageProps> = ({ currentCycle, journalEntries }) => 
   const days = getDaysInMonth(currentDate);
   const today = new Date();
   const isCurrentMonth = currentDate.getMonth() === today.getMonth() && currentDate.getFullYear() === today.getFullYear();
-  const cycleDay = Math.max(1, Math.floor((today.getTime() - userCycle.startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1);
+// Calculate cycle day based on full days since period start
+const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+const startMidnight = new Date(userCycle.startDate.getFullYear(), userCycle.startDate.getMonth(), userCycle.startDate.getDate());
+const daysSincePeriodStart = Math.floor((todayMidnight.getTime() - startMidnight.getTime()) / (1000 * 60 * 60 * 24));
+const cycleDay = daysSincePeriodStart + 1;
 
   return (
     <div className="page-container">

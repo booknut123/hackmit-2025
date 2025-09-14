@@ -1,4 +1,5 @@
-a.chat-container {
+/* === Chat Container === */
+.chat-container {
   max-width: 900px;
   margin: 2rem auto;
   padding: 0 1rem;
@@ -7,13 +8,14 @@ a.chat-container {
   gap: 1.5rem;
 }
 
+/* === Chat Header === */
 .chat-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   padding: 1.25rem 1.5rem;
 }
 
@@ -75,10 +77,11 @@ a.chat-container {
   color: #22c55e;
 }
 
+/* === Quick Actions === */
 .chat-quick-actions {
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   padding: 1.25rem 1.5rem;
 }
 
@@ -107,7 +110,7 @@ a.chat-container {
   color: #6b7280;
   cursor: pointer;
   transition: background 0.2s;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
 .chat-quick-btn:hover {
@@ -122,10 +125,11 @@ a.chat-container {
 .quick-icon.purple { color: #a78bfa; }
 .quick-icon.blue { color: #2563eb; }
 
+/* === Messages === */
 .chat-messages {
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   padding: 1.25rem 1.5rem;
   min-height: 300px;
   max-height: 400px;
@@ -163,7 +167,7 @@ a.chat-container {
   background: #fff;
   border-radius: 1rem;
   padding: 0.9rem 1.2rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
   border: 1px solid #ede9fe;
   display: flex;
   flex-direction: column;
@@ -191,6 +195,7 @@ a.chat-container {
   color: #fff;
 }
 
+/* === Typing Indicator === */
 .chat-message-typing {
   display: flex;
   gap: 0.3rem;
@@ -214,13 +219,14 @@ a.chat-container {
   to { transform: translateY(-6px); }
 }
 
+/* === Input === */
 .chat-input-row {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   padding: 1.25rem 1.5rem;
 }
 
@@ -264,6 +270,7 @@ a.chat-container {
   height: 1.1rem;
 }
 
+/* === Context Box === */
 .chat-context {
   background: linear-gradient(90deg, #ede9fe 0%, #fce7f3 100%);
   border-radius: 1rem;
@@ -271,7 +278,7 @@ a.chat-container {
   margin-top: 1rem;
   font-size: 0.98rem;
   color: #6b7280;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
 .chat-context-note {

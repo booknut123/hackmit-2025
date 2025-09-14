@@ -29,6 +29,7 @@ export interface JournalEntry {
   content: string;
 }
 
+// Sample data - this would normally come from a database or API
 const currentCycle: Cycle = {
   startDate: new Date(2025, 8, 1),
   currentDay: 13,
@@ -44,7 +45,7 @@ const journalEntries: JournalEntry[] = [
     cycleDay: 13,
     notes: 'Feeling good today.',
     voice_note: null,
-    content: 'Feeling good today.',
+    content: 'Feeling good today. Had some mild cramps this morning but they subsided after my walk.',
   },
   {
     id: '2',
@@ -54,7 +55,7 @@ const journalEntries: JournalEntry[] = [
     cycleDay: 12,
     notes: 'Great energy levels, perfect for my workout.',
     voice_note: null,
-    content: 'Great energy levels, perfect for my workout.',
+    content: 'Amazing energy today! Did a full HIIT workout and felt incredible. My skin is looking really clear too.',
   },
   {
     id: '3',
@@ -64,8 +65,28 @@ const journalEntries: JournalEntry[] = [
     cycleDay: 11,
     notes: 'Peaceful day, did some yoga.',
     voice_note: null,
-    content: 'Peaceful day, did some yoga.',
+    content: 'Had a really peaceful day today. Did some gentle yoga in the morning and felt centered all day.',
   },
+  {
+    id: '4',
+    date: '2025-09-10',
+    mood: ['tired', 'overwhelmed'],
+    symptoms: ['headache', 'bloating'],
+    cycleDay: 10,
+    notes: 'Rough day at work, feeling stressed.',
+    voice_note: null,
+    content: 'Work was really stressful today. Had a persistent headache and felt bloated. Need to practice more self-care.',
+  },
+  {
+    id: '5',
+    date: '2025-09-09',
+    mood: 'excited',
+    symptoms: ['increased appetite'],
+    cycleDay: 9,
+    notes: 'Looking forward to the weekend.',
+    voice_note: null,
+    content: 'Feeling really excited about weekend plans! Noticed I\'ve been hungrier than usual - probably hormonal.',
+  }
 ];
 
 const NAV_ITEMS = [
@@ -79,13 +100,32 @@ const NAV_ITEMS = [
 
 function AppContent() {
   const [activeTab, setActiveTab] = useState(() => {
-    // Persist active tab in localStorage
-    return localStorage.getItem('activeTab') || 'calendar';
+    // Get saved tab from localStorage, but don't use it directly to avoid localStorage issues
+    return 'calendar';
   });
 
-  // Save active tab to localStorage whenever it changes
+  const [savedTab, setSavedTab] = useState<string>('calendar');
+
+  // Load saved tab on mount
   useEffect(() => {
-    localStorage.setItem('activeTab', activeTab);
+    try {
+      const saved = localStorage.getItem('activeTab');
+      if (saved) {
+        setSavedTab(saved);
+        setActiveTab(saved);
+      }
+    } catch (error) {
+      console.warn('LocalStorage not available, using default tab');
+    }
+  }, []);
+
+  // Save active tab when it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem('activeTab', activeTab);
+    } catch (error) {
+      console.warn('Could not save to localStorage');
+    }
   }, [activeTab]);
 
   let content;

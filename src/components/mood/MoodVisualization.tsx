@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import './MoodVisualization.css';
 import { Heart, Zap, Cloud, Moon, Smile, BarChart3, TrendingUp, CheckCircle, AlertCircle } from 'lucide-react';
 import { LineChart, Line, Area, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -112,7 +112,7 @@ export default function MoodVisualization() {
 
       {/* Emotional Spectrum Analysis */}
       <div className="moodviz-spectrum-row">
-        {spectrumData.map((item, idx) => (
+        {spectrumData.map((item) => (
           <div key={item.label} className={`moodviz-spectrum-card ${item.label.toLowerCase()}`}>
             <div className="moodviz-spectrum-icon">
               {item.label === 'Joy' && <Smile />}
@@ -162,7 +162,7 @@ export default function MoodVisualization() {
       {/* Factors Influencing Mood */}
       <div className="moodviz-factors-card">
         <div className="moodviz-section-title">Factors Influencing Your Mood</div>
-        {factors.map((factor, idx) => (
+        {factors.map((factor) => (
           <div key={factor.label} className="moodviz-factor-row">
             <span className="moodviz-factor-label">{factor.label}</span>
             <div className="moodviz-factor-bar">
@@ -176,7 +176,7 @@ export default function MoodVisualization() {
 
       {/* Personalized Insights */}
       <div className="moodviz-insights-row">
-        {insights.map((insight, idx) => (
+        {insights.map((insight) => (
           <div key={insight.label} className="moodviz-insight-card">
             <div className="moodviz-insight-icon">{insight.icon}</div>
             <div className="moodviz-insight-label">{insight.label}</div>

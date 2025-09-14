@@ -14,7 +14,7 @@ The app reflects your unique patterns, moods, and health correlations, empowerin
 * AI as your companion.
 Not a chatbot, but a digital twin trained on your lived experience.
 
-<img max-height="400" alt="ChatGPT Image Sep 14, 2025, 05_54_01 AM" src="https://github.com/user-attachments/assets/fcd670f2-c9a6-48e9-ab97-56fd07fff330" />
+<img height="400" alt="ChatGPT Image Sep 14, 2025, 05_54_01 AM" src="https://github.com/user-attachments/assets/fcd670f2-c9a6-48e9-ab97-56fd07fff330" />
 
 ## 📚 Philosophy and Innovation
 * Old Way (Bellabeat, Flo): Population-based, clinical, generic.

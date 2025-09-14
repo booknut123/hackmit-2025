@@ -4,7 +4,8 @@ body {
     padding: 0;
     background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 50%, #ddd6fe 100%);
     min-height: 100vh;
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
 }
 
 /* Page container */

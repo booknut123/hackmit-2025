@@ -1,186 +1,149 @@
-import React, { useState, useMemo } from "react";
-import "./PatternInsights.css";
-import {
-  TrendingUp,
-  Activity,
-  Calendar,
-  PieChart,
-  Heart,
-  Zap,
-  Cloud,
-  Target,
-  Clock,
-} from "lucide-react";
+import React, { useState } from 'react';
+import './PatternInsights.css';
+import { TrendingUp, Activity, Calendar, PieChart, BarChart3, Heart, Zap, Cloud, AlertCircle, Target, Clock } from 'lucide-react';
 
-interface JournalEntry {
-  log_date: string;
-  day_rating?: number;
-  journal_entry?: string;
-  moods: string[];
-  symptoms: string[];
-  energy?: number;
-  sleep?: number;
-  stress?: number;
-  exercise?: number;
-  nutrition?: number;
-  social_connection?: number;
-}
+const PatternInsights = ({ journalEntries }) => {
+  const [activeTab, setActiveTab] = useState('mood-trends');
 
-interface MoodVisualizationProps {
-  journalEntries: JournalEntry[];
-}
+  // Mock data based on your screenshots
+  const moodTrendsData = [
+    { day: 1, mood: 3, energy: 2 },
+    { day: 3, mood: 2, energy: 2 },
+    { day: 5, mood: 3, energy: 3 },
+    { day: 8, mood: 4, energy: 4 },
+    { day: 10, mood: 5, energy: 5 },
+    { day: 12, mood: 4, energy: 4 },
+    { day: 14, mood: 5, energy: 5 },
+    { day: 16, mood: 4, energy: 4 },
+    { day: 18, mood: 3, energy: 3 },
+    { day: 21, mood: 2, energy: 2 },
+    { day: 24, mood: 2, energy: 2 },
+    { day: 26, mood: 3, energy: 3 },
+    { day: 28, mood: 2, energy: 2 }
+  ];
 
-const MoodVisualization = ({ journalEntries }: MoodVisualizationProps) => {
-  const [activeTab, setActiveTab] = useState("mood-trends");
+  const symptomsData = [
+    { symptom: 'Breast Tenderness', frequency: 6, severity: 3.2 },
+    { symptom: 'Acne', frequency: 5, severity: 2.8 },
+    { symptom: 'Fatigue', frequency: 4, severity: 3.5 },
+    { symptom: 'Mood Swings', frequency: 4, severity: 3.8 },
+    { symptom: 'Headache', frequency: 3, severity: 2.5 },
+    { symptom: 'Bloating', frequency: 3, severity: 3.0 },
+    { symptom: 'Cramps', frequency: 2, severity: 4.2 }
+  ];
 
-  // --- Transform real journalEntries into chart-friendly data ---
+  const phaseSymptoms = [
+    {
+      phase: 'Menstrual',
+      symptoms: ['Cramps (75%)', 'Fatigue (60%)', 'Lower back pain (40%)'],
+      color: '#ef4444'
+    },
+    {
+      phase: 'Follicular', 
+      symptoms: ['High energy (80%)', 'Clear skin (65%)', 'Good mood (70%)'],
+      color: '#10b981'
+    },
+    {
+      phase: 'Ovulatory',
+      symptoms: ['Peak energy (85%)', 'Mild bloating (30%)', 'Increased libido (70%)'],
+      color: '#f59e0b'
+    },
+    {
+      phase: 'Luteal',
+      symptoms: ['Bloating (80%)', 'Mood swings (65%)', 'Breast tenderness (55%)'],
+      color: '#8b5cf6'
+    }
+  ];
 
-  // Mood trends (day_rating + energy over time)
-  const moodTrendsData = useMemo(() => {
-    return journalEntries.map((entry, index) => ({
-      day: index + 1,
-      mood: entry.day_rating || 0,
-      energy: entry.energy || 0,
-    }));
-  }, [journalEntries]);
+  const correlationData = [
+    { factor: 'Sleep Quality', mood: 4.0, energy: 4.2, symptoms: -3.5 },
+    { factor: 'Exercise', mood: 3.8, energy: 4.5, symptoms: -3.2 },
+    { factor: 'Stress', mood: -4.2, energy: -3.8, symptoms: 4.5 },
+    { factor: 'Caffeine', mood: -2.5, energy: 1.8, symptoms: 2.2 },
+    { factor: 'Water Intake', mood: 2.0, energy: 2.5, symptoms: -2.8 }
+  ];
 
-  // Symptom frequency
-  const symptomsData = useMemo(() => {
-    const counts: Record<string, number> = {};
-    journalEntries.forEach((entry) => {
-      entry.symptoms.forEach((symptom) => {
-        if (!counts[symptom]) counts[symptom] = 0;
-        counts[symptom] += 1;
-      });
-    });
-    return Object.entries(counts).map(([symptom, frequency]) => ({
-      symptom,
-      frequency,
-    }));
-  }, [journalEntries]);
+  const cycleHealthData = [
+    { metric: 'Regularity', score: 8.2, max: 10 },
+    { metric: 'Symptom Management', score: 8, max: 10 },
+    { metric: 'Mood Stability', score: 7, max: 10 },
+    { metric: 'Overall Health Score', score: 9, max: 10 }
+  ];
 
-  // Correlations (very basic demo until proper stats are done)
-  const correlationData = useMemo(() => {
-    if (journalEntries.length === 0) return [];
-    const avg = (key: keyof JournalEntry) =>
-      journalEntries.reduce((sum, e) => {
-        const value = e[key];
-        return sum + (typeof value === 'number' ? value : 0);
-      }, 0) / journalEntries.length;
+  const keyCorrelations = [
+    {
+      title: 'Sleep Quality',
+      description: 'Strong positive impact on mood and energy',
+      impact: 'Strong Positive',
+      icon: Heart
+    },
+    {
+      title: 'Exercise',
+      description: 'Consistently improves mood and reduces symptoms',
+      impact: 'Positive',
+      icon: Zap
+    },
+    {
+      title: 'Stress',
+      description: 'Major factor in symptom severity',
+      impact: 'Strong Negative',
+      icon: Cloud
+    }
+  ];
 
-    return [
-      {
-        factor: "Sleep Quality",
-        mood: avg("day_rating") - 3,
-        energy: avg("energy") - 3,
-        symptoms: -(symptomsData.length / 2),
-      },
-      {
-        factor: "Exercise",
-        mood: avg("exercise") - 2,
-        energy: avg("exercise"),
-        symptoms: -avg("exercise"),
-      },
-      {
-        factor: "Stress",
-        mood: -avg("stress"),
-        energy: -avg("stress"),
-        symptoms: avg("stress"),
-      },
-    ];
-  }, [journalEntries, symptomsData]);
+  const formatCorrelationValue = (value) => {
+    return value > 0 ? `+${value.toFixed(1)}` : value.toFixed(1);
+  };
 
-  // Cycle health (basic scoring from averages + symptom burden)
-  const cycleHealthData = useMemo(() => {
-    if (journalEntries.length === 0) return [];
-    const avg = (key: keyof JournalEntry) =>
-      journalEntries.reduce((sum, e) => {
-        const value = e[key];
-        return sum + (typeof value === 'number' ? value : 0);
-      }, 0) / journalEntries.length;
-
-    return [
-      { metric: "Regularity", score: 8, max: 10 }, // static until cycle tracking
-      {
-        metric: "Symptom Management",
-        score: 10 - Math.min(symptomsData.length, 10),
-        max: 10,
-      },
-      { metric: "Mood Stability", score: avg("day_rating") || 0, max: 5 },
-      {
-        metric: "Overall Health Score",
-        score:
-          ((avg("day_rating") || 0) +
-            (avg("energy") || 0) +
-            (avg("sleep") || 0)) /
-          1.5,
-        max: 10,
-      },
-    ];
-  }, [journalEntries, symptomsData]);
-
-  // Helpers
-  const formatCorrelationValue = (value: number) =>
-    value > 0 ? `+${value.toFixed(1)}` : value.toFixed(1);
-
-  const getCorrelationColor = (value: number) => {
-    if (value >= 3) return "#22c55e";
-    if (value >= 1) return "#86efac";
-    if (value <= -3) return "#ef4444";
-    if (value <= -1) return "#fca5a5";
-    return "#6b7280";
+  const getCorrelationColor = (value) => {
+    if (value >= 3) return '#22c55e';
+    if (value >= 1) return '#86efac';
+    if (value <= -3) return '#ef4444';
+    if (value <= -1) return '#fca5a5';
+    return '#6b7280';
   };
 
   return (
     <div className="moodviz-container">
-      {/* Tabs */}
+      {/* Pattern Insights Tabs */}
       <div className="pattern-tabs">
-        <button
-          className={`pattern-tab-btn ${
-            activeTab === "mood-trends" ? "active" : ""
-          }`}
-          onClick={() => setActiveTab("mood-trends")}
+        <button 
+          className={`pattern-tab-btn ${activeTab === 'mood-trends' ? 'active' : ''}`}
+          onClick={() => setActiveTab('mood-trends')}
         >
           <TrendingUp className="pattern-tab-icon" />
           Mood Trends
         </button>
-        <button
-          className={`pattern-tab-btn ${
-            activeTab === "symptoms" ? "active" : ""
-          }`}
-          onClick={() => setActiveTab("symptoms")}
+        <button 
+          className={`pattern-tab-btn ${activeTab === 'symptoms' ? 'active' : ''}`}
+          onClick={() => setActiveTab('symptoms')}
         >
           <Activity className="pattern-tab-icon" />
           Symptoms
         </button>
-        <button
-          className={`pattern-tab-btn ${
-            activeTab === "cycle-health" ? "active" : ""
-          }`}
-          onClick={() => setActiveTab("cycle-health")}
+        <button 
+          className={`pattern-tab-btn ${activeTab === 'cycle-health' ? 'active' : ''}`}
+          onClick={() => setActiveTab('cycle-health')}
         >
           <Calendar className="pattern-tab-icon" />
           Cycle Health
         </button>
-        <button
-          className={`pattern-tab-btn ${
-            activeTab === "correlations" ? "active" : ""
-          }`}
-          onClick={() => setActiveTab("correlations")}
+        <button 
+          className={`pattern-tab-btn ${activeTab === 'correlations' ? 'active' : ''}`}
+          onClick={() => setActiveTab('correlations')}
         >
           <PieChart className="pattern-tab-icon" />
           Correlations
         </button>
       </div>
 
-      {/* Mood Trends */}
-      {activeTab === "mood-trends" && (
+      {/* Mood Trends Section */}
+      {activeTab === 'mood-trends' && (
         <div className="pattern-section">
           <div className="pattern-card">
-            <div className="pattern-card-title">
-              Mood & Energy Throughout Cycle
-            </div>
+            <div className="pattern-card-title">Mood & Energy Throughout Cycle</div>
             <div className="pattern-chart">
+              {/* Chart would go here - using mock data visualization */}
               <div className="mock-chart">
                 <div className="chart-y-axis">
                   <span>5</span>
@@ -192,14 +155,14 @@ const MoodVisualization = ({ journalEntries }: MoodVisualizationProps) => {
                 <div className="chart-bars">
                   {moodTrendsData.map((data, index) => (
                     <div key={index} className="chart-bar-group">
-                      <div
-                        className="chart-bar mood-bar"
+                      <div 
+                        className="chart-bar mood-bar" 
                         style={{ height: `${data.mood * 20}%` }}
-                      />
-                      <div
-                        className="chart-bar energy-bar"
+                      ></div>
+                      <div 
+                        className="chart-bar energy-bar" 
                         style={{ height: `${data.energy * 20}%` }}
-                      />
+                      ></div>
                       <span className="chart-day">{data.day}</span>
                     </div>
                   ))}
@@ -207,11 +170,29 @@ const MoodVisualization = ({ journalEntries }: MoodVisualizationProps) => {
               </div>
             </div>
           </div>
+          
+          <div className="pattern-insights-row">
+            <div className="pattern-insight-card green">
+              <div className="pattern-insight-title">Peak Energy</div>
+              <div className="pattern-insight-phase">Days 8-14 (Follicular/Ovulatory)</div>
+              <div className="pattern-insight-desc">Best time for important tasks</div>
+            </div>
+            <div className="pattern-insight-card yellow">
+              <div className="pattern-insight-title">Mood Dips</div>
+              <div className="pattern-insight-phase">Days 21-26 (Late Luteal)</div>
+              <div className="pattern-insight-desc">Plan extra self-care</div>
+            </div>
+            <div className="pattern-insight-card purple">
+              <div className="pattern-insight-title">Recovery</div>
+              <div className="pattern-insight-phase">Days 5-7 (Late Menstrual)</div>
+              <div className="pattern-insight-desc">Mood starts improving</div>
+            </div>
+          </div>
         </div>
       )}
 
-      {/* Symptoms */}
-      {activeTab === "symptoms" && (
+      {/* Symptoms Section */}
+      {activeTab === 'symptoms' && (
         <div className="pattern-section">
           <div className="symptoms-grid">
             <div className="symptoms-card">
@@ -221,16 +202,32 @@ const MoodVisualization = ({ journalEntries }: MoodVisualizationProps) => {
                   <div key={index} className="symptom-item">
                     <span className="symptom-name">{symptom.symptom}</span>
                     <div className="symptom-frequency">
-                      <div
+                      <div 
                         className="frequency-bar"
-                        style={{
-                          width: `${
-                            (symptom.frequency / journalEntries.length) * 100
-                          }%`,
-                        }}
-                      />
+                        style={{ width: `${(symptom.frequency / 6) * 100}%` }}
+                      ></div>
                     </div>
                     <span className="symptom-count">{symptom.frequency}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="phase-symptoms-card">
+              <h3 className="symptoms-title">Symptom Patterns by Phase</h3>
+              <div className="phase-grid">
+                {phaseSymptoms.map((phase, index) => (
+                  <div key={index} className="phase-column">
+                    <h4 className="phase-title" style={{ color: phase.color }}>
+                      {phase.phase}
+                    </h4>
+                    <ul className="phase-symptoms-list">
+                      {phase.symptoms.map((symptom, sIndex) => (
+                        <li key={sIndex} className="phase-symptom">
+                          {symptom}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
               </div>
@@ -239,14 +236,12 @@ const MoodVisualization = ({ journalEntries }: MoodVisualizationProps) => {
         </div>
       )}
 
-      {/* Correlations */}
-      {activeTab === "correlations" && (
+      {/* Correlations Section */}
+      {activeTab === 'correlations' && (
         <div className="pattern-section">
           <div className="correlations-grid">
             <div className="correlations-card">
-              <h3 className="correlations-title">
-                Lifestyle Factor Correlations
-              </h3>
+              <h3 className="correlations-title">Lifestyle Factor Correlations</h3>
               <div className="correlations-table">
                 <div className="table-header">
                   <span>Factor</span>
@@ -257,19 +252,19 @@ const MoodVisualization = ({ journalEntries }: MoodVisualizationProps) => {
                 {correlationData.map((item, index) => (
                   <div key={index} className="table-row">
                     <span className="factor-name">{item.factor}</span>
-                    <span
+                    <span 
                       className="correlation-value"
                       style={{ color: getCorrelationColor(item.mood) }}
                     >
                       {formatCorrelationValue(item.mood)}
                     </span>
-                    <span
+                    <span 
                       className="correlation-value"
                       style={{ color: getCorrelationColor(item.energy) }}
                     >
                       {formatCorrelationValue(item.energy)}
                     </span>
-                    <span
+                    <span 
                       className="correlation-value"
                       style={{ color: getCorrelationColor(item.symptoms) }}
                     >
@@ -283,50 +278,29 @@ const MoodVisualization = ({ journalEntries }: MoodVisualizationProps) => {
             <div className="key-correlations-card">
               <h3 className="correlations-title">Key Correlations</h3>
               <div className="key-correlations-list">
-                <div className="key-correlation-item">
-                  <div className="correlation-header">
-                    <Heart className="correlation-icon" />
-                    <span className="correlation-factor">Sleep Quality</span>
-                    <span className="correlation-impact positive">
-                      Positive
-                    </span>
-                  </div>
-                  <p className="correlation-desc">
-                    Better sleep → better mood and energy
-                  </p>
-                </div>
-                <div className="key-correlation-item">
-                  <div className="correlation-header">
-                    <Zap className="correlation-icon" />
-                    <span className="correlation-factor">Exercise</span>
-                    <span className="correlation-impact positive">
-                      Positive
-                    </span>
-                  </div>
-                  <p className="correlation-desc">
-                    Activity reduces symptoms and improves energy
-                  </p>
-                </div>
-                <div className="key-correlation-item">
-                  <div className="correlation-header">
-                    <Cloud className="correlation-icon" />
-                    <span className="correlation-factor">Stress</span>
-                    <span className="correlation-impact negative">
-                      Negative
-                    </span>
-                  </div>
-                  <p className="correlation-desc">
-                    Higher stress → worse symptoms
-                  </p>
-                </div>
+                {keyCorrelations.map((correlation, index) => {
+                  const Icon = correlation.icon;
+                  return (
+                    <div key={index} className="key-correlation-item">
+                      <div className="correlation-header">
+                        <Icon className="correlation-icon" />
+                        <span className="correlation-factor">{correlation.title}</span>
+                        <span className={`correlation-impact ${correlation.impact.toLowerCase().includes('positive') ? 'positive' : 'negative'}`}>
+                          {correlation.impact}
+                        </span>
+                      </div>
+                      <p className="correlation-desc">{correlation.description}</p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Cycle Health */}
-      {activeTab === "cycle-health" && (
+      {/* Cycle Health Section */}
+      {activeTab === 'cycle-health' && (
         <div className="pattern-section">
           <div className="cycle-health-grid">
             <div className="health-scores-card">
@@ -336,17 +310,13 @@ const MoodVisualization = ({ journalEntries }: MoodVisualizationProps) => {
                   <div key={index} className="health-score-item">
                     <div className="health-score-header">
                       <span className="health-metric">{health.metric}</span>
-                      <span className="health-value">
-                        {health.score.toFixed(1)}/{health.max}
-                      </span>
+                      <span className="health-value">{health.score}/10</span>
                     </div>
                     <div className="health-progress-bar">
-                      <div
+                      <div 
                         className="health-progress-fill"
-                        style={{
-                          width: `${(health.score / health.max) * 100}%`,
-                        }}
-                      />
+                        style={{ width: `${(health.score / health.max) * 100}%` }}
+                      ></div>
                     </div>
                   </div>
                 ))}
@@ -386,4 +356,4 @@ const MoodVisualization = ({ journalEntries }: MoodVisualizationProps) => {
   );
 };
 
-export default MoodVisualization;
+export default PatternInsights;

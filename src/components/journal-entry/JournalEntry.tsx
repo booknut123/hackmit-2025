@@ -164,6 +164,7 @@ export default function JournalEntry() {
       {renderSlider("Exercise", exercise, setExercise)}
       {renderSlider("Nutrition", nutrition, setNutrition)}
       {renderSlider("Social Connection", social, setSocial)}
+      
 
       {/* Notes */}
       <div className="journal-section">

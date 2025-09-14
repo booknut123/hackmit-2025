@@ -1,69 +1,42 @@
-# React + TypeScript + Vite
+Welcome to Periodically!
+"Your cycle, your story, your insight."
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Made by Kailyn, Linda, and Perla (HackMIT 2025)
 
-Currently, two official plugins are available:
+Periodically is a web application that helps users track their menstrual cycle and provides insights and recommendations based on their data. It uses machine learning to analyze the data and provide personalized recommendations to users.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Menstrual cycle tracking
+- Mood and symptom tracking
+- Personalized recommendations based on user data
+- Machine learning-powered insights
+- Data visualization and analysis
+- User-friendly interface
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technologies
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Recharts
+- Anthropic AI
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
+4. Open http://localhost:5173 in your browser
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Create an account and log in
+2. Track your menstrual cycle and mood
+3. View insights and recommendations
+4. Get personalized recommendations based on your data
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## License
+
+MIT

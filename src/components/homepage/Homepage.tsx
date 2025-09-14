@@ -1,24 +1,9 @@
 import React, { useState } from 'react';
 import './Homepage.css';
 import { ChevronLeft, ChevronRight, Heart, Zap, Circle, Cloud } from 'lucide-react';
+import type { JournalEntry, Cycle } from '../../types/JournalEntry';
 
 type CyclePhase = 'menstrual' | 'follicular' | 'ovulatory' | 'luteal' | 'unknown';
-
-interface Cycle {
-  startDate: Date;
-  currentDay: number;
-  phase: CyclePhase;
-}
-
-
-interface JournalEntry {
-  id: string;
-  date: string;
-  content: string;
-  mood: 'happy' | 'energetic' | 'neutral' | 'sad';
-  symptoms: string[];
-  cycleDay: number;
-}
 
 interface HomepageProps {
   currentCycle: Cycle;
@@ -113,7 +98,7 @@ const Homepage: React.FC<HomepageProps> = ({ currentCycle, journalEntries }) => 
     const start = new Date(periodStart);
     const today = new Date();
     const cycleDay = Math.floor((today.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-    let phase: CyclePhase = cycleDay <= 5 ? 'menstrual' : cycleDay <= 13 ? 'follicular' : cycleDay <= 15 ? 'ovulatory' : 'luteal';
+    const phase: CyclePhase = cycleDay <= 5 ? 'menstrual' : cycleDay <= 13 ? 'follicular' : cycleDay <= 15 ? 'ovulatory' : 'luteal';
     setUserCycle({ startDate: start, currentDay: Math.max(1, cycleDay), phase });
     setShowPeriodForm(false);
   };

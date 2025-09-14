@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './PatternInsights.css';
-import { TrendingUp, Activity, Calendar, PieChart, BarChart3, Heart, Zap, Cloud, AlertCircle, Target, Clock } from 'lucide-react';
+import { TrendingUp, Activity, Calendar, PieChart, Heart, Zap, Cloud, Target, Clock } from 'lucide-react';
 
-const PatternInsights = ({ journalEntries }) => {
+const PatternInsights = () => {
   const [activeTab, setActiveTab] = useState('mood-trends');
 
   // Mock data based on your screenshots
@@ -91,11 +91,11 @@ const PatternInsights = ({ journalEntries }) => {
     }
   ];
 
-  const formatCorrelationValue = (value) => {
+  const formatCorrelationValue = (value: number) => {
     return value > 0 ? `+${value.toFixed(1)}` : value.toFixed(1);
   };
 
-  const getCorrelationColor = (value) => {
+  const getCorrelationColor = (value: number) => {
     if (value >= 3) return '#22c55e';
     if (value >= 1) return '#86efac';
     if (value <= -3) return '#ef4444';
